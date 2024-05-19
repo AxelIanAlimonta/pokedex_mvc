@@ -1,0 +1,28 @@
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  background-color: #f8d027;
+  position: fixed;
+  width: 100vw;
+  bottom: 0;
+}
+
+@media screen and (max-width: 1440px) {
+  footer {
+    font-size: 1.3em;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  footer {
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  footer {
+    font-size: 1em;
+  }
+}

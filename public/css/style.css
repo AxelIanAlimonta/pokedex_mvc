@@ -1,0 +1,186 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: "Changa One", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+/*BUSCADOR*/
+
+.buscador{
+    margin: 2em 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    font-size: 1.4em;
+}
+
+.pokemon{
+    width: 70%;
+    padding: .4em;
+    border: 2px solid goldenrod;
+    border-radius: 1em 0 0 1em;
+}
+
+.quienes{
+    width: 30%;
+    background-color: #F8D027;
+    border: 2px solid goldenrod;
+    border-radius: 0 1em 1em 0;
+    cursor: pointer;
+    padding: .4em;
+    color: white;
+}
+
+.quienes:hover{
+    background-color: #f5d440;
+}
+
+.div-boton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nuevoPokemon{
+    width: 30%;
+    background-color: #F8D027;
+    border: 2px solid goldenrod;
+    border-radius: 1em;
+    cursor: pointer;
+    padding: .4em;
+    color: white;
+}
+
+.nuevoPokemon:hover{
+    background-color: #f5d440;
+}
+
+/*TABLA*/
+
+.tabla{
+    display: flex;
+    justify-content: center;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+th, td {
+    border: 2px solid goldenrod;
+    text-align: left;
+    padding: .4em;
+}
+
+th {
+    background-color: #F8D027;
+    color: white;
+}
+
+img {
+    max-width: 100px;
+    height: auto;
+}
+
+.action-buttons {
+    text-align: center;
+}
+
+.action-buttons button {
+    cursor: pointer;
+    background-color: #F8D027;
+    border: .1em solid #F8D027;
+    border-radius: 1em;
+    padding: .4em 1em;
+    color: white;
+}
+
+.action-buttons button:hover{
+    background-color: #f5d440;
+}
+
+
+
+@media screen and (max-width: 1200px) {
+    form, table{
+        font-size: 1.2em;
+    }
+    .img_p{
+        width: 6em;
+        height: 6em;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    form, table{
+        font-size: 1em;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    form{
+        font-size: .6em;
+    }
+    table {
+        border: 0;
+        font-size: .6em;
+    }
+    table thead {
+        display: none;
+    }
+    table tr {
+        display: flex;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        margin-bottom: 20px;
+        align-items: center;
+        justify-content: center;
+    }
+    table td {
+        display: block;
+        text-align: left;
+        border: none;
+        padding: 5px;
+    }
+    table td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #888;
+        margin-bottom: 5px;
+        display: block;
+    }
+    .action-buttons {
+        margin-top: 10px;
+    }
+
+
+    .action-buttons button {
+        font-size: .8em;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .img_p{
+        width: 5.5em;
+        height: 5.5em;
+    }
+}

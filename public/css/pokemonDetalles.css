@@ -1,0 +1,31 @@
+.contenedor__porkemon {
+    display: flex;
+    margin-left: 60px;
+    border: 5px solid black;
+
+}
+
+.tipo__pokemon {
+    display: flex;
+    margin-left: 40em;
+    position: absolute;
+    bottom: 30em;
+}
+
+.nombre__pokemon{
+    display: flex;
+    margin-left: 36em;
+    position: absolute;
+    bottom: 18em;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.descrip__pokemon{
+    display: flex;
+    margin-left: 20em;
+    position: absolute;
+    bottom: 10em;
+    text-align: initial;
+    font-size: 2em;
+}

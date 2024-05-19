@@ -1,0 +1,33 @@
+<section class="buscador">
+       <form action="/mvc/index.php" method="POST">
+           <input type="text" class="pokemon" name="pokemonesBusqueda" placeholder="Ingrese el nombre, tipo o número de pokémon">
+           <input class="quienes" type="submit" value="Quien es este pokemon?">
+       </form>
+    </section>
+<section class="tabla">
+    <table class="">
+        <tr>
+            <th>Imagen</th>
+            <th>Tipo</th>
+            <th>Numero</th>
+            <th>Nombre</th>
+            {{#userLogueado}}
+                <th>Acciones</th>
+            {{/userLogueado}}
+        </tr>
+        {{#pokemones}}
+            <tr>
+                <td><img class="img_p" src="public/imagenes/pokemones/{{numero}}.png"></td>
+                <td><img class="img_p" style="height:1em" src="public/imagenes/TipoPokemon/tipo_{{tipo}}.png"></td>
+                <td>{{numero}}</td>
+                <td>{{imagen}}</td>
+                {{#userLogueado}}
+                <td data-label="Acciones" class="action-buttons">
+                  <a href="/mvc/index.php?id={{id}}&nombre={{imagen}}&tipo={{tipo}}&numero={{numero}}&descripcion={{descripcion}}&pokemonesTotales=$total_pokemones"><button>Modificar</button></a>
+                  <a href="/mvc/eliminarPokemon.php?id={{id}}"><button>Eliminar</button></a>
+                </td>
+                {{/userLogueado}}
+            </tr>
+        {{/pokemones}}
+    </table>
+</div>
