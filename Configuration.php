@@ -1,11 +1,7 @@
 <?php
-include_once("controller/SongsController.php");
-include_once("controller/ToursController.php");
-include_once("controller/LaBandaController.php");
+
 include_once("controller/PokemonesController.php");
 
-include_once("model/SongsModel.php");
-include_once("model/ToursModel.php");
 include_once("model/PokemonesModel.php");
 
 include_once("helper/Database.php");
@@ -20,38 +16,17 @@ class Configuration
 {
 
     // CONTROLLERS
-    public static function getLaBandaController()
-    {
-        return new LaBandaController(self::getPresenter());
-    }
 
     public static function getPokemonesController()
     {
         return new PokemonesController(self::getPokemonesModel(), self::getPresenter());
     }
 
-    public static function getToursController()
-    {
-        return new ToursController(self::getToursModel(), self::getPresenter());
-    }
-
-    public static function getSongsController()
-    {
-        return new SongsController(self::getSongsModel(), self::getPresenter());
-    }
 
 
 
     // MODELS
-    private static function getToursModel()
-    {
-        return new ToursModel(self::getDatabase());
-    }
 
-    private static function getSongsModel()
-    {
-        return new SongsModel(self::getDatabase());
-    }
 
     private static function getPokemonesModel()
     {
