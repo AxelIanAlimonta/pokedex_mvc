@@ -1,0 +1,31 @@
+<main>
+    <section class="formulario">
+        <h2>Nuevo Pokémon</h2>
+        <form action="/mvc/index.php?controller=Pokemones&action=procesarModificar" method="POST" enctype="multipart/form-data" style="dispay:flex; flex-direction: column">
+                <input type="hidden" name="id" value={{id}}>
+            <div class="input-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" value="{{nombre}}">
+            </div>
+            <div class="input-group">
+                <label for="tipo">Imagen (solo archivos PNG):</label>
+                <input type="file" id="imagen" name="imagen" accept="image/png">
+            </div>
+            <div class="input-group">
+                <label for="tipo">Tipo:</label>
+                <input type="text" id="tipo" value="{{tipo}}" name="tipo" accept=".txt">
+            </div>
+            <div class="input-group">
+                <label for="numero">Número:</label>
+                <input type="text" id="numero" name="numero" value="{{numero}}">
+            </div>
+            <div class="input-group">
+                <label for="descripcion">Descripcion:</label>
+                <input type="text" id="descripcion" name="descripcion" value="{{descripcion}}">
+            </div>
+            <div class="input-group">
+                <button type="submit">Modificar Pokemón</button>
+            </div>
+        </form>
+    </section>
+</main>

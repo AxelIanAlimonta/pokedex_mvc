@@ -23,17 +23,18 @@ class PokemonesModel
 
     public function deletePokemones($id)
     {
-        return $this->database->query("DELETE FROM pokemon WHERE id = $id");
+        $this->database->execute("DELETE FROM pokemon WHERE id = $id");
     }
 
     public function addPokemones($nombre, $tipo, $numero, $descripcion)
     {
-        return $this->database->query("INSERT INTO pokemon (imagen, tipo, numero, descripcion) VALUES ('$nombre', '$tipo', '$numero', '$descripcion')");
+        
+        $this->database->execute("INSERT INTO pokemon (imagen, tipo, numero, descripcion) VALUES ('$nombre', '$tipo', '$numero', '$descripcion')");
     }
 
     public function updatePokemones($id,$nombre, $tipo, $numero, $descripcion)
     {
-        return $this->database->query("UPDATE pokemon
+        $this->database->execute("UPDATE pokemon
         SET imagen = '$nombre',
             tipo = '$tipo',
             numero = '$numero',

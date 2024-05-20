@@ -1,0 +1,30 @@
+<main>
+    <section class="formulario">
+        <h2>Nuevo Pokémon</h2>
+        <form action="/mvc/index.php?controller=Pokemones&action=procesarAdd" method="POST" enctype="multipart/form-data">
+            <div class="input-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ejemplo: Pikachu" required>
+            </div>
+            <div class="input-group">
+                <label for="tipo">Imagen (solo archivos PNG):</label>
+                <input type="file" id="imagen" name="imagen" accept="image/png">
+            </div>
+            <div class="input-group">
+                <label for="tipo">Tipo:</label>
+                <input type="text" id="tipo" name="tipo" placeholder="Ejemplo: Planta" required>
+            </div>
+            <div class="input-group">
+                <label for="numero">Número:</label>
+                <input type="text" id="numero" name="numero" placeholder="Ejemplo: 160" required>
+            </div>
+            <div class="input-group">
+                <label for="descripcion">Descripcion:</label>
+                <input type="text" id="descripcion" name="descripcion" placeholder="Descripcion corta del pokemon" required>
+            </div>
+            <div class="input-group">
+                <button type="submit">Agregar Pokémon</button>
+            </div>
+        </form>
+    </section>
+</main>
