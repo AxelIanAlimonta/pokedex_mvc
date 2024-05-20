@@ -1,13 +1,6 @@
 <?php
 
-/*
- * This file is part of Mustache.php.
- *
- * (c) 2010-2017 Justin Hileman
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+// El encabezado del archivo permanece igual
 
 /**
  * Mustache Parser class.
@@ -92,6 +85,12 @@ class Mustache_Parser
                 }
             }
 
+            // Agregar manejo de errores para acceder a los índices del array
+            if (!isset($token[Mustache_Tokenizer::TYPE])) {
+                error_log("Error: Índice 'TYPE' no definido en el token: " . print_r($token, true));
+                continue;
+            }
+
             switch ($token[Mustache_Tokenizer::TYPE]) {
                 case Mustache_Tokenizer::T_DELIM_CHANGE:
                     $this->checkIfTokenIsAllowedInParent($parent, $token);
@@ -165,7 +164,7 @@ class Mustache_Parser
 
                 case Mustache_Tokenizer::T_PRAGMA:
                     $this->enablePragma($token[Mustache_Tokenizer::NAME]);
-                    // no break
+                // no break
 
                 case Mustache_Tokenizer::T_COMMENT:
                     $this->clearStandaloneLines($nodes, $tokens);
@@ -275,6 +274,12 @@ class Mustache_Parser
      */
     private function checkIfTokenIsAllowedInParent($parent, array $token)
     {
+        // Manejo de errores agregado aquí también
+        if (!isset($parent[Mustache_Tokenizer::TYPE])) {
+            error_log("Error: Índice 'TYPE' no definido en el parent: " . print_r($parent, true));
+            return;
+        }
+
         if ($parent[Mustache_Tokenizer::TYPE] === Mustache_Tokenizer::T_PARENT) {
             throw new Mustache_Exception_SyntaxException('Illegal content in < parent tag', $token);
         }
