@@ -32,19 +32,33 @@ class PokemonesController
 
     public function validarUsuario()
     {
-        if(isset($_POST['usuario'])&&isset($_POST['password'])){
+        session_start();
+
+        $error = false;
+        $userLogueado = false;
+
+        if (isset($_POST['usuario']) && isset($_POST['password'])) {
             $usuario = $_POST['usuario'];
-            $pass =$_POST['password'];
+            $pass = $_POST['password'];
             $resultado = $this->model->getUsuario($usuario, $pass);
-        }
-        if(!empty($resultado)){
-            $userLogueado = true;
-            $error = false;
-        }else{
-            $userLogueado = false;
+
+            if (!empty($resultado)) {
+                $_SESSION['userLogueado'] = true;
+                $userLogueado = true;
+            } else {
+                $error = true;
+            }
+        } else {
             $error = true;
         }
-        $this->presenter->render("view/pokemonesView.mustache",["userLogueado" => $userLogueado, "error"=> $error]);
+
+        $pokemones = $this->model->getPokemones(); // Cargar los Pokémon siempre
+
+        $this->presenter->render("view/pokemonesView.mustache", [
+            "userLogueado" => $userLogueado,
+            "error" => $error,
+            "pokemones" => $pokemones
+        ]);
     }
 
     public function add()
@@ -86,17 +100,21 @@ class PokemonesController
         $this->presenter->render("view/modificarPokemon.mustache", ["userLogueado" => $userLogueado, "nombre" => $nombre, "id" => $id, "tipo" => $tipo, "numero" => $numero, "descripcion" => $descripcion]);
     }
 
+
     public function procesarModificar()
     {
+
         $id = $_POST["id"];
         $nombre = $_POST["nombre"];
         $tipo = $_POST["tipo"];
         $numero = $_POST["numero"];
         $descripcion = $_POST["descripcion"];
         $this->model->updatePokemones($id, $nombre, $tipo, $numero, $descripcion);
-        header("location:/mvc/index.php");
+
+        header("Location: /mvc/index.php");
         exit();
     }
+
 
     public function infoPokemon()
     {
