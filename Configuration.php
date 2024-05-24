@@ -22,11 +22,7 @@ class Configuration
         return new PokemonesController(self::getPokemonesModel(), self::getPresenter());
     }
 
-
-
-
     // MODELS
-
 
     private static function getPokemonesModel()
     {

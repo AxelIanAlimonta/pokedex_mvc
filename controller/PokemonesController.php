@@ -9,16 +9,15 @@ class PokemonesController
     {
         $this->model = $model;
         $this->presenter = $presenter;
+        if (!empty($resultado)) {
+            $_SESSION['userLogueado'] = true;
+            // Otros pasos después de la autenticación exitosa
+        }
     }
 
     public function get()
     {
-
-        if (isset($_POST["userLogueado"])) {
-            $userLogueado = true;
-        } else {
-            $userLogueado = false;
-        }
+        $userLogueado = isset($_SESSION['userLogueado']) ? $_SESSION['userLogueado'] : false;
 
         if (isset($_POST["pokemonesBusqueda"])) {
             $pokemonesBusqueda = $_POST["pokemonesBusqueda"];
@@ -32,16 +31,16 @@ class PokemonesController
 
     public function validarUsuario()
     {
-        session_start();
-
         $error = false;
         $userLogueado = false;
 
+        // Verificar usuario y contraseña
         if (isset($_POST['usuario']) && isset($_POST['password'])) {
             $usuario = $_POST['usuario'];
             $pass = $_POST['password'];
             $resultado = $this->model->getUsuario($usuario, $pass);
 
+            // Autenticación exitosa
             if (!empty($resultado)) {
                 $_SESSION['userLogueado'] = true;
                 $userLogueado = true;
@@ -52,8 +51,10 @@ class PokemonesController
             $error = true;
         }
 
-        $pokemones = $this->model->getPokemones(); // Cargar los Pokémon siempre
+        // Obtener los Pokémon
+        $pokemones = $this->model->getPokemones();
 
+        // Renderizar la vista
         $this->presenter->render("view/pokemonesView.mustache", [
             "userLogueado" => $userLogueado,
             "error" => $error,
@@ -68,13 +69,16 @@ class PokemonesController
 
     public function procesarAdd()
     {
-
         $nombre = $_POST["nombre"];
         $tipo = $_POST["tipo"];
         $numero = $_POST["numero"];
         $descripcion = $_POST["descripcion"];
         $this->model->addPokemones($nombre, $tipo, $numero, $descripcion);
-        header("location:/mvc/index.php");
+        $pokemones = $this->model->getPokemones();
+        $this->presenter->render("view/pokemonesView.mustache", [
+            "userLogueado" => true,
+            "pokemones" => $pokemones
+        ]);
         exit();
     }
 
@@ -82,7 +86,13 @@ class PokemonesController
     {
         $id = $_GET["id"];
         $this->model->deletePokemones($id);
-        header("location:/mvc/index.php");
+
+        $pokemones = $this->model->getPokemones();
+        $this->presenter->render("view/pokemonesView.mustache", [
+            "userLogueado" => true,
+            "pokemones" => $pokemones
+        ]);
+
         exit();
     }
 
@@ -111,7 +121,11 @@ class PokemonesController
         $descripcion = $_POST["descripcion"];
         $this->model->updatePokemones($id, $nombre, $tipo, $numero, $descripcion);
 
-        header("Location: /mvc/index.php");
+        $pokemones = $this->model->getPokemones();
+        $this->presenter->render("view/pokemonesView.mustache", [
+            "userLogueado" => true,
+            "pokemones" => $pokemones
+        ]);
         exit();
     }
 
