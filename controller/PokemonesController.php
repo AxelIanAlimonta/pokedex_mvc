@@ -30,6 +30,23 @@ class PokemonesController
         $this->presenter->render("view/pokemonesView.mustache", ["pokemones" => $pokemones, "userLogueado" => $userLogueado]);
     }
 
+    public function validarUsuario()
+    {
+        if(isset($_POST['usuario'])&&isset($_POST['password'])){
+            $usuario = $_POST['usuario'];
+            $pass =$_POST['password'];
+            $resultado = $this->model->getUsuario($usuario, $pass);
+        }
+        if(!empty($resultado)){
+            $userLogueado = true;
+            $error = false;
+        }else{
+            $userLogueado = false;
+            $error = true;
+        }
+        $this->presenter->render("view/pokemonesView.mustache",["userLogueado" => $userLogueado, "error"=> $error]);
+    }
+
     public function add()
     {
         $this->presenter->render("view/agregarPokemonView.mustache");

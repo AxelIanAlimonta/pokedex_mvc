@@ -24,18 +24,17 @@
 
     {{^userLogueado}}
     
-    <form class="form" action="/mvc/index.php" method="POST">
-        <input type="text" placeholder="Usuario" id="username" class="form__input" name="usuario">
-        <input type="password" placeholder="Contraseña" id="password" class="form__input" name="pass">
+    <form class="form" action="/mvc/index.php?controller=Pokemones&action=validarUsuario" method="POST">
+        <input type="text" placeholder="Usuario" id="username" class="form__input" name="usuario" required>
+        <input type="password" placeholder="Contraseña" id="password" class="form__input" name="password" required>
         <input type="hidden" name="userLogueado" id="userLogueado" value="true">
         <button type="submit" class="form__input-button">Ingresar</button>
-        {{! <?php
-        if ( isset($_GET['error'])){
-            echo "<div style='background-color: aquamarine;color:red; padding: .2em; text-align: center' >Usuario y contraseña invalidos </div> ";
-        }
-        ?> }}
+        {{#error}}
+        <div style='background-color: aquamarine;color:red; padding: .2em; text-align: center' >Usuario y contraseña invalidos </div>
+        {{/error}}
     </form>
     {{/userLogueado}}
+
     {{#userLogueado}}
     <div style="color: black; text-align: center">
         <img src="/mvc/public/imagenes/logo/user.png" alt="">

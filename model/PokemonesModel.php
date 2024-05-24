@@ -9,6 +9,12 @@ class PokemonesModel
         $this->database = $database;
     }
 
+    public function getUsuario($usuario,$pass)
+    {
+        return $this->database->query("SELECT * FROM login WHERE usuario = '$usuario' AND pass = '$pass'");
+
+    }
+
     public function getPokemones()
     {
         return $this->database->query("SELECT * FROM POKEMON");
@@ -28,7 +34,6 @@ class PokemonesModel
 
     public function addPokemones($nombre, $tipo, $numero, $descripcion)
     {
-        
         $this->database->execute("INSERT INTO pokemon (imagen, tipo, numero, descripcion) VALUES ('$nombre', '$tipo', '$numero', '$descripcion')");
     }
 
